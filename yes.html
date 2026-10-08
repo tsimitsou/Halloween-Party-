@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Halloween RSVP - YES!</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="halloween-yes">
+
+    <main class="yes-container">
+
+        <h1>YOU HAVE BEEN SUMMONED!</h1>
+
+        <p class="yes-message">
+            The spirits are expecting you...
+            <br>
+            Bring your drink of choice!
+        </p>
+
+        <h2>SEAL YOUR FATE</h2>
+
+        <!-- RSVP FORM -->
+        <form id="halloween-form"
+              action="https://formspree.io/f/xangqdrj"
+              method="POST">
+
+            <input type="hidden"
+                   name="response"
+                   value="YES - Attending Halloween Party">
+
+            <!-- GUEST NAME -->
+            <label for="guestName">
+                WHO DARES TO ENTER?
+            </label>
+
+            <input type="text"
+                   id="guestName"
+                   name="name"
+                   placeholder="Enter your name..."
+                   autocomplete="name"
+                   required>
+
+            <!-- PLUS ONE -->
+            <label for="plusOne">
+                BRINGING ANOTHER SOUL?
+            </label>
+
+            <select id="plusOne"
+                    name="plus_one_request"
+                    required>
+
+                <option value="" disabled selected>
+                    Choose your fate...
+                </option>
+
+                <option value="No">
+                    No, just me
+                </option>
+
+                <option value="Yes - Requesting approval">
+                    Yes, I'd like to request a +1
+                </option>
+
+            </select>
+
+            <p class="plus-one-note">
+                +1 requests are subject to approval.
+                <br>
+                We'll review your request and let you know!
+            </p>
+
+            <button type="submit" class="confirm-button">
+                SEAL MY FATE
+            </button>
+
+        </form>
+
+        <!-- SUCCESS MESSAGE -->
+        <div id="success-message" class="success-message" hidden>
+            <h2>YOUR FATE IS SEALED!</h2>
+
+            <p>
+                Your RSVP has been received.
+                <br>
+                See you at the party, mortal!
+            </p>
+
+            <p>
+                If you requested a +1, we'll let you know
+                whether it's approved.
+            </p>
+        </div>
+
+        <p class="yes-footer">
+            October 30th awaits...
+        </p>
+
+    </main>
+
+    <script>
+        const form = document.getElementById("halloween-form");
+        const successMessage = document.getElementById("success-message");
+        const submitButton = form.querySelector("button[type='submit']");
+
+        form.addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            submitButton.disabled = true;
+            submitButton.textContent = "SUMMONING...";
+
+            try {
+                const response = await fetch(form.action, {
+                    method: "POST",
+                    body: new FormData(form),
+                    headers: {
+                        "Accept": "application/json"
+                    }
+                });
+
+                if (response.ok) {
+                    form.hidden = true;
+                    successMessage.hidden = false;
+                } else {
+                    alert("Something went wrong. Please try again.");
+                }
+
+            } catch (error) {
+                alert("Could not send your RSVP. Check your connection.");
+
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = "SEAL MY FATE";
+            }
+        });
+        
+    </script>
+    
+
+</body>
+</html>
