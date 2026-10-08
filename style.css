@@ -624,3 +624,53 @@
         0 12px
     );
 }
+.halloween-yes .drink-message {
+    font-size: 28px;
+    color: #e6caca;
+    margin-top: 25px;
+}
+/* MOBILE VERSION - MAIN INVITATION */
+
+@media (max-width: 600px) {
+
+    .details-box h1 {
+        font-size: 38px;
+    }
+
+    .details-box h2 {
+        font-size: 28px;
+    }
+
+    .details-box p {
+        font-size: 22px;
+        line-height: 1.4;
+    }
+
+    .rsvp-text {
+        font-size: 35px;
+    }
+
+    .gothic-frame-top,
+    .gothic-frame-bottom {
+        max-width: 75%;
+        height: auto;
+    }
+
+    .details-box {
+        margin-top: 20px;
+        padding: 10px;
+    }
+
+}
+/* MOBILE - RSVP QUESTION */
+
+@media (max-width: 600px) {
+    .details-sub {
+        font-size: 28px;
+        line-height: 1.2;
+        margin-top: 25px;
+        margin-bottom: 20px;
+        padding: 0 10px;
+        text-align: center;
+    }
+}
